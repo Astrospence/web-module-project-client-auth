@@ -10,7 +10,7 @@ const Login = (props) => {
 
     const handleChange = (e) => {
         setValues({
-            ...state,
+            ...values,
             [e.target.name]: e.target.value
         });
     };
@@ -20,12 +20,15 @@ const Login = (props) => {
         axiosWithAuth()
             .post('/login', values)
             .then(res => {
-                console.log(res);
+                const { token, role, username } = res.data;
+                localStorage.setItem('token', token);
+                localStorage.setItem('role', role);
+                localStorage.setItem('username', username);
+                history.push('/friendlist');
             })
             .catch(err => {
                 console.log(err);
             });
-        history.push('/friendlist');
     };
 
     return (
@@ -46,6 +49,7 @@ const Login = (props) => {
                     value={values.password}
                     onChange={handleChange}
                 />
+                <button>SUBMIT</button>
             </form>
         </div>
     )
