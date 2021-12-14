@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Login from './components/Login';
+import FriendList from './components/FriendList';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             </li>
           </ul>
         <Switch>
+          <Route exact path='/friendlist' component={FriendList} />
           <Route path='/' component={Login} />
         </Switch>
       </div>
