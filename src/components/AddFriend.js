@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-const Login = (props) => {
+const AddFriend = (props) => {
     const { Link, history } = props;
     const [ values, setValues ] = useState({
         username: '',
@@ -24,7 +24,7 @@ const Login = (props) => {
                 localStorage.setItem('token', token);
                 localStorage.setItem('role', role);
                 localStorage.setItem('username', username);
-                history.push('/friends');
+                history.push('/friendlist');
             })
             .catch(err => {
                 console.log(err);
@@ -33,19 +33,19 @@ const Login = (props) => {
 
     return (
         <div>
-            <h1>LOGIN</h1>
+            <h1>ADD FRIEND</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     name='username'
                     type='text'
-                    placeholder='Username'
+                    placeholder='Friend Name'
                     value={values.username}
                     onChange={handleChange}
                 />
                 <input 
                     name='password'
                     type='text'
-                    placeholder='Password'
+                    placeholder='Friend Email'
                     value={values.password}
                     onChange={handleChange}
                 />
@@ -55,4 +55,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default AddFriend;
