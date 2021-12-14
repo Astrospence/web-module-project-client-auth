@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const Login = (props) => {
-    const { Link, history } = props;
+    const { history } = props;
     const [ values, setValues ] = useState({
         username: '',
         password: ''
@@ -27,7 +27,8 @@ const Login = (props) => {
                 history.push('/friends');
             })
             .catch(err => {
-                console.log(err);
+                console.error(err);
+                alert('Incorrect username or password');
             });
     };
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-const AddFriend = (props) => {
-    const { Link, history } = props;
+const AddFriend = () => {
+    const { push } = useHistory();
     const [ values, setValues ] = useState({
         username: '',
         password: ''
@@ -18,16 +19,14 @@ const AddFriend = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axiosWithAuth()
-            .post('/login', values)
+            .post('/friends', values)
             .then(res => {
-                const { token, role, username } = res.data;
-                localStorage.setItem('token', token);
-                localStorage.setItem('role', role);
-                localStorage.setItem('username', username);
-                history.push('/friendlist');
+                console.log(res);
+                push('/friends');
             })
             .catch(err => {
-                console.log(err);
+                console.error(err);
+                alert('Sorry, we are unable to process your addition.');
             });
     };
 

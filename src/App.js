@@ -6,6 +6,7 @@ import Login from './components/Login';
 import FriendList from './components/FriendList';
 import AddFriend from './components/AddFriend';
 import Logout from './components/Logout';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <div className="App">
           <ul>
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/'>Login</Link>
             </li>
             <li>
               <Link to='/friends'>Friend List</Link>
@@ -26,9 +27,9 @@ function App() {
             </li>
           </ul>
         <Switch>
-          <Route exact path='/logout' component={Logout} />
-          <Route exact path='/friends/add' component={AddFriend} />
-          <Route exact path='/friends' component={FriendList} />
+          <PrivateRoute exact path='/logout' component={Logout} />
+          <PrivateRoute exact path='/friends/add' component={AddFriend} />
+          <PrivateRoute exact path='/friends' component={FriendList} />
           <Route path='/' component={Login} />
         </Switch>
       </div>
